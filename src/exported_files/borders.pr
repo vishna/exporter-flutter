@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-class AppBorders {
+{[ const dsPrefix = @js.dsPrefix(@ds.currentDesignSystemVersion()) /]}
+class {{ dsPrefix }}Borders {
 
 {[ const borderTokensTree = @ds.tokenGroupTreeByType("Border") /]}
 {[ traverse borderTokensTree property subgroups into borderTokenGroup ]}
@@ -19,5 +20,5 @@ class AppBorders {
 
   {[/]}
 {[/]}
-  AppBorders._();
+  {{ dsPrefix }}Borders._();
 }
