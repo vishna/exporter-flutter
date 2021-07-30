@@ -43,7 +43,72 @@ function arrayJoin(array, separator) {
     return array.join(separator)
 }
 
+/**
+ * 
+ * Creates an empty array
+ * 
+ * @returns {Array<any>}
+ */
+function arrayCreate() {
+    return []
+}
+
+/**
+ * 
+ * Pushes an item to an array
+ * 
+ * @param {Array<any>} arr
+ * @param {any} obj
+ * 
+ * @returns {Array<any>}
+ */
+function arrayPush(arr, obj) {
+    arr.push(obj)
+    return arr
+}
+
+/**
+ * @param {string} separator
+ * 
+ * @returns {boolean}
+ */
+function isNumeric(str) {
+    if (typeof str != "string") return false // we only process strings!  
+    return !isNaN(str) && // use type coercion to parse the _entirety_ of the string (`parseFloat` alone does not do this)...
+        !isNaN(parseFloat(str)) // ...and ensure strings of whitespace fail
+}
+
+/**
+ * 
+ * @param obj result of ds.currentDesignSystemVersion()
+ * @returns {string}
+ */
+function dsPrefix(obj) {
+    const array = obj.customTokenProperties
+    const prefix = array.find(element => element.codeName === "dsPrefix");
+    if (prefix == null) {
+        return "App";
+    } else {
+        return prefix.defaultValue;
+    }
+}
+
+/**
+ * 
+ * @param obj
+ * @returns {string}
+ */
+function formatAsDouble(obj) {
+    // console.log(JSON.stringify(obj));
+    return parseFloat(obj).toFixed(2);
+}
+
 Pulsar.registerFunction("createDocumentationComment", createDocumentationComment)
 Pulsar.registerFunction("createFullTokenGroupPath", createFullTokenGroupPath)
 Pulsar.registerFunction("arrayConcat", arrayConcat)
 Pulsar.registerFunction("arrayJoin", arrayJoin)
+Pulsar.registerFunction("arrayCreate", arrayCreate)
+Pulsar.registerFunction("arrayPush", arrayPush)
+Pulsar.registerFunction("isNumeric", isNumeric)
+Pulsar.registerFunction("dsPrefix", dsPrefix)
+Pulsar.registerFunction("formatAsDouble", formatAsDouble)

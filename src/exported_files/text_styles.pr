@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-class AppTextStyles {
+{[ const dsPrefix = dsPrefix(ds.currentDesignSystemVersion()) /]}
+class {{ dsPrefix }}TextStyles {
 
 {[ const typographyTokensTree = ds.tokenGroupTreeByType("Typography") /]}
 {[ traverse typographyTokensTree property subgroups into typographyTokenGroup ]}
@@ -41,5 +42,5 @@ class AppTextStyles {
 
   {[/]}
 {[/]}
-  AppTextStyles._();
+  {{ dsPrefix }}TextStyles._();
 }

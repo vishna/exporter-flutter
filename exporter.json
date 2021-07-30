@@ -1,6 +1,6 @@
 {
-    "id": "io.supernova.flutter-styles",
-    "name": "Flutter",
+    "id": "dev.vishna.flutter-styles",
+    "name": "Flutter (vishna fork)",
     "description": "Flutter token and style exporter",
     "source_dir": "src",
     "version": "1.1",
@@ -10,8 +10,8 @@
         "Tokens",
         "Styles"
     ],
-    "author": "Artem Ufimtcev",
-    "organization": "Supernova",
+    "author": "Łukasz Wiśniewski",
+    "organization": "vishna.dev",
     "homepage": "https://supernova.io",
     "config": {
         "output": "output.json",
