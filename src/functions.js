@@ -99,8 +99,16 @@ function dsPrefix(obj) {
  * @returns {string}
  */
 function formatAsDouble(obj) {
-    // console.log(JSON.stringify(obj));
     return parseFloat(obj).toFixed(2);
+}
+
+function flutterTextHeight(lineHeight, fontSize) {
+    return formatAsDouble(lineHeight / fontSize);
+}
+
+function logStuff(obj) {
+    console.log(JSON.stringify(obj));
+    return ""
 }
 
 Pulsar.registerFunction("createDocumentationComment", createDocumentationComment)
@@ -112,3 +120,5 @@ Pulsar.registerFunction("arrayPush", arrayPush)
 Pulsar.registerFunction("isNumeric", isNumeric)
 Pulsar.registerFunction("dsPrefix", dsPrefix)
 Pulsar.registerFunction("formatAsDouble", formatAsDouble)
+Pulsar.registerFunction("logStuff", logStuff)
+Pulsar.registerFunction("flutterTextHeight", flutterTextHeight)

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 
 {[ const dsPrefix = dsPrefix(ds.currentDesignSystemVersion()) /]}
 class {{ dsPrefix }}Borders {
@@ -13,9 +15,9 @@ class {{ dsPrefix }}Borders {
   {[ if (borderToken.description && borderToken.description !== "") ]}
 {{ createDocumentationComment(borderToken.description, "  ") }}
   {[/]}
-  static const {{ fullTokenName }} = Border.fromBorderSide(BorderSide(
+  static Border get {{ fullTokenName }} => Border.fromBorderSide(BorderSide(
     color: {[ inject "export_color_value" context borderToken.value.color /]},
-    width: {[ inject "export_measure_value" context borderToken.value.width /]},
+    width: {[ inject "export_measure_value" context borderToken.value.width /]}.r,
   ));
 
   {[/]}

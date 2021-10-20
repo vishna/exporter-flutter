@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 {[ const dsPrefix = dsPrefix(ds.currentDesignSystemVersion()) /]}
 class {{ dsPrefix }}Dimensions {
@@ -17,8 +18,7 @@ class {{ dsPrefix }}Dimensions {
   {[ if (measureToken.description && measureToken.description !== "") ]}
 {{ createDocumentationComment(measureToken.description, "  ") }}
   {[/]}
-  static const {{ fullTokenName }} = {[ inject "export_measure_value" context measureToken.value /]};
-  static const {{ fullTokenName }}_d = {{ formatAsDouble(measureToken.value.measure) }};
+  static double get {{ fullTokenName }} => {[ inject "export_measure_value" context measureToken.value /]}.r;
   {[/]}
   const {{ dsPrefix }}Dimensions._(this.name, this.value);
   static const values = <{{dsPrefix}}Dimensions>[
@@ -32,11 +32,30 @@ class {{ dsPrefix }}Dimensions {
 {[ for measureToken in measureTokenInGroups ]}
 {[ const fullTokenPath = arrayConcat(fullTokenGroupPath, measureToken.name) /]}
 {[ const fullTokenName = arrayJoin(fullTokenPath, " ").camelcased(false).uppercased() /]}
-const SH_{{ fullTokenName }} = SizedBox(width: {[ inject "export_measure_value" context measureToken.value /]});
-const SV_{{ fullTokenName }} = SizedBox(height: {[ inject "export_measure_value" context measureToken.value /]});
-const PH_{{ fullTokenName }} = EdgeInsets.symmetric(horizontal: {[ inject "export_measure_value" context measureToken.value /]});
-const PV_{{ fullTokenName }} = EdgeInsets.symmetric(vertical: {[ inject "export_measure_value" context measureToken.value /]});
-const P_{{ fullTokenName }} = EdgeInsets.all({[ inject "export_measure_value" context measureToken.value /]});
+const SH_{{ fullTokenName }} = _SizedBox(width: {[ inject "export_measure_value" context measureToken.value /]});
+const SV_{{ fullTokenName }} = _SizedBox(height: {[ inject "export_measure_value" context measureToken.value /]});
+get PH_{{ fullTokenName }} => EdgeInsets.symmetric(horizontal: {[ inject "export_measure_value" context measureToken.value /]}.r);
+get PV_{{ fullTokenName }} => EdgeInsets.symmetric(vertical: {[ inject "export_measure_value" context measureToken.value /]}.r);
+get P_{{ fullTokenName }} => EdgeInsets.all({[ inject "export_measure_value" context measureToken.value /]}.r);
 {[/]} 
 
 {[/]}
+
+class _SizedBox extends StatelessWidget {
+  const _SizedBox({
+    Key? key,
+    this.width,
+    this.height,
+  }) : super(key: key);
+
+  final double? width;
+  final double? height;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: width?.r,
+      height: height?.r,
+    );
+  }
+}

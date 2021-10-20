@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 {[ const dsPrefix = dsPrefix(ds.currentDesignSystemVersion()) /]}
 class {{ dsPrefix }}Shadows {
@@ -13,11 +14,11 @@ class {{ dsPrefix }}Shadows {
   {[ if (shadowToken.description && shadowToken.description !== "") ]}
 {{ createDocumentationComment(shadowToken.description, "  ") }}
   {[/]}
-  static const {{ fullTokenName }} = BoxShadow(
+  static BoxShadow get {{ fullTokenName }} => BoxShadow(
     color: {[ inject "export_color_value" context shadowToken.value.color /]},
-    offset: Offset({{ shadowToken.value.x.measure.toString() }}, {{ shadowToken.value.y.measure.toString() }}),
-    blurRadius: {{shadowToken.value.radius.measure.toString()}},
-    spreadRadius: {{shadowToken.value.spread.measure.toString()}},
+    offset: Offset({{ shadowToken.value.x.measure.toString() }}.r, {{ shadowToken.value.y.measure.toString() }}.r),
+    blurRadius: {{shadowToken.value.radius.measure.toString()}}.r,
+    spreadRadius: {{shadowToken.value.spread.measure.toString()}}.r,
   );
 
   {[/]}

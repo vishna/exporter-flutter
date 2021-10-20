@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 {[ const dsPrefix = dsPrefix(ds.currentDesignSystemVersion()) /]}
 class {{ dsPrefix }}Radii {
@@ -13,7 +14,7 @@ class {{ dsPrefix }}Radii {
   {[ if (radiusToken.description && radiusToken.description !== "") ]}
 {{ createDocumentationComment(radiusToken.description, "  ") }}
   {[/]}
-  static const {{ fullTokenName }} = BorderRadius.all(Radius.circular({[ inject "export_measure_value" context radiusToken.value.radius /]}));
+  static BorderRadius get {{ fullTokenName }} => BorderRadius.all(Radius.circular({[ inject "export_measure_value" context radiusToken.value.radius /]}.r));
 
   {[/]}
 {[/]}
